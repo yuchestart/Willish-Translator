@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Willish Translator</title>
+    <style>
+      html{
+      font-family:sans-serif;
+      }
+      textarea{
+        resize:none;
+        width:200px;
+        height:200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Willish translator</h1>
+    <select id="mode">
+      <option selected>English to Willish</option>
+      <option>Willish to English</option>
+    </select>
+    <button id="translate">Translate</button>
+    <br>
+    <textarea id="in"></textarea>
+    <textarea id="out" readonly></textarea>
+    <script>
+      //I can't believe I have to make a regex for this😞
+      const simpdetection = /(\s*anne)*/gmi;
+      function translate(){
+          if(document.querySelector("#mode").value == "Willish to English"){
+              let isasimp = simpdetection.test(document.querySelector("#in").value)
+            
+              document.querySelector("#out").innerText = isasimp ? "Hi, it's me the translator. Idk what he's saying, but I'm gonna assume he's simping for Anne again..." : "I don't believe you. Are you even speaking Willish?";
+              return;
+          }
+          document.querySelector("#out").innerText = document.querySelector("#in").value.split(" ").map(x=>"Anne").join(" ");
+          
+      }
+      document.querySelector("#translate").onclick = translate;
+    </script>
+  </body>
+</html>
